@@ -39,8 +39,24 @@
   
   
   우정현
+  
+  
+  ##### 목차
+  
+  1. 소개(Introduction)
+  
+  2. 전체 설명(Overall Description)
 
-### 1      소개(Introduction)
+  3. 유스케이스(Usecase)
+  
+  4. 시스템(System Feature)
+  
+  5. 외부 인터페이스 요구사항(External Interface Requirement)
+  
+  6. 기능 이외의 다른 요구사항(Other Nonfuctional Requirement)
+  
+
+### 1       소개(Introduction)
 
 ##### 1.1     목적(Purpose)
 
@@ -178,7 +194,7 @@ CopytoLeft 버튼을 누르면 오른쪽 패널에서 선택한 블록을 왼쪽
 
 ​	이 기능과관련된 상세한기능 요구사항을항목으로 나열한다. 이것들은 사용자가 기능의 서비스를 수행하기 위해또는 유스케이스를 수행하기 위해 사용하는 소프트웨어의 기능들이다. 제품이 예상되는 에러 상황, 무효한입력과동작에대해 어떻게응답해야 하는지를 설명한다. 각각의 기능 요구사항에 유일한 레이블을 붙인다.
 
-### 5      외부 인터페이스 요구사항(External InterfaceRequirement)
+### 5      외부 인터페이스 요구사항(External Interface Requirement)
 
 ##### 5.1     사용자 인터페이스
 
