@@ -1,4 +1,3 @@
-package src;
 
 public class Test {
 
@@ -11,5 +10,4 @@ public class Test {
 		view = new View_mainFrame();
 		controll = new SM_Controller(model, view);
 	}
-
 }

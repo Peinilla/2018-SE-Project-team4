@@ -1,4 +1,3 @@
-package src;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -68,13 +67,13 @@ public class Model_diff {
 		return diffStr;
 	}
 	
-	public int[] getDiffView(boolean isTwo) {
+	public int[] getDiffView(boolean isLeft) {
 		int[] diffView;
 		ArrayList<String> diffStr = getDiff();
 		ArrayList<String> buf = new ArrayList<String>();
 		int jnx = 0;
 		
-		if(isTwo) {
+		if(isLeft) {
 			diffView = new int[L_str.size()];
 			buf.addAll(L_str);
 		}else {
@@ -92,8 +91,6 @@ public class Model_diff {
 		}
 		
 		//assert(diffStr.size() == jnx);
-		
-		
 		
 		return diffView;
 	}

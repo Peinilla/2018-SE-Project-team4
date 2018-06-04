@@ -1,5 +1,3 @@
-package src;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -14,6 +12,8 @@ import javax.swing.JTextPane;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
+
+import com.sun.corba.se.impl.orb.ParserTable.TestContactInfoListFactory;
 
 
 public class View_textFrame extends JPanel {
@@ -111,7 +111,7 @@ public class View_textFrame extends JPanel {
 				}
 			}else {
 				try {
-					styleDoc.insertString(styleDoc.getLength(), buf + "\n", AttributeUtil.getDefaultAttribute());
+					styleDoc.insertString(styleDoc.getLength(), buf + "\n", AttributeUtil.getSameAttribute());
 				} catch (BadLocationException e) {
 					e.printStackTrace();
 				}
