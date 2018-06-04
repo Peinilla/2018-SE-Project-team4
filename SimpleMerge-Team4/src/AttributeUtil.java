@@ -5,7 +5,7 @@ import javax.swing.text.StyleConstants;
 import java.awt.*;
 
 public class AttributeUtil {
-    public static SimpleAttributeSet getSameAttribute(){
+    public static SimpleAttributeSet getAddedAttribute(){
         SimpleAttributeSet addedAttribute = new SimpleAttributeSet();
         StyleConstants.setBackground(addedAttribute, Color.YELLOW);
         return addedAttribute;
@@ -19,7 +19,7 @@ public class AttributeUtil {
 
     public static SimpleAttributeSet getDiffAttribute(){
         SimpleAttributeSet diffAttribute = new SimpleAttributeSet();
-        StyleConstants.setBackground(diffAttribute, Color.MAGENTA);
+        StyleConstants.setBackground(diffAttribute, Color.YELLOW);
         return diffAttribute;
     }
     public static SimpleAttributeSet getEmptyAttribute(){

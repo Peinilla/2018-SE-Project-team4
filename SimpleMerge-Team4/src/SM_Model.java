@@ -63,39 +63,16 @@ public class SM_Model {
 		}
 	}
 	
-	public String getAllLineNum(boolean isLeft){
-		if(isLeft) {
-			return ListToStringLineNum(L_str);
-		}else {
-			return ListToStringLineNum(R_str);
-		}
-	}
-	
 	public void setAll(FileReader rd, boolean isLeft){
 		//ÀüºÎ set
 	}
 
 	public String ListToString(List<String> str) {
-		String result = new String();
+		String result;
 		
-		for(int inx = 0; inx < str.size(); inx++) {
-			result += str.get(inx) +"\n";
-		}
-		
-		return result;
-	}
-	
-	public String ListToStringLineNum(List<String> str) {
-		List<String> buf = new ArrayList<String>();
-		String result = new String();
-		
-		for(int inx = 0;inx < str.size(); inx++) {
-			buf.add((inx+1) + " : " + str.get(inx));
-		}
-		
-		for(int inx = 0; inx < str.size(); inx++) {
-			result += buf.get(inx) +"\n";
-		}
+		result = str.toString();
+		result = result.substring(1, result.length() - 1);
+		result = result.replaceAll(", ", "\n");
 		
 		return result;
 	}
@@ -103,7 +80,6 @@ public class SM_Model {
 	public List<String> StringToList(String str){
 		List<String> buf = new ArrayList<String>();
 		buf = Arrays.asList(str.split("\n"));
-	
 		return buf;
 	}
 	
@@ -113,13 +89,4 @@ public class SM_Model {
 		return _model_diff.getDiffView(isTwo);
 	}
 	
-	public String setLineNum(String str) {
-		int inx = 1;
-		
-		return 	str.replaceAll("\n", "\n" + inx++ + ":");
-	}
-	
-	public void delLineNum(String str) {
-		
-	}
 }

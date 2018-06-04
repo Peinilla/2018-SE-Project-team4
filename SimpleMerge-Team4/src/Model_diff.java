@@ -68,13 +68,13 @@ public class Model_diff {
 		return diffStr;
 	}
 	
-	public int[] getDiffView(boolean isLeft) {
+	public int[] getDiffView(boolean isTwo) {
 		int[] diffView;
 		ArrayList<String> diffStr = getDiff();
 		ArrayList<String> buf = new ArrayList<String>();
 		int jnx = 0;
 		
-		if(isLeft) {
+		if(isTwo) {
 			diffView = new int[L_str.size()];
 			buf.addAll(L_str);
 		}else {
@@ -93,9 +93,8 @@ public class Model_diff {
 		
 		//assert(diffStr.size() == jnx);
 		
-		return diffView;
-	}
-	public void getDiffView_blank(int[] L_str, int[] R_str) {
 		
+		
+		return diffView;
 	}
 }
