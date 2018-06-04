@@ -13,8 +13,6 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 
-import com.sun.corba.se.impl.orb.ParserTable.TestContactInfoListFactory;
-
 
 public class View_textFrame extends JPanel {
 	

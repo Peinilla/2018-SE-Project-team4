@@ -94,4 +94,32 @@ public class Model_diff {
 		
 		return diffView;
 	}
+	
+	public void getDiffView_Blank(int[] L_str, int[] R_str) {
+		ArrayList<Integer> buf1 = new ArrayList<Integer>();
+		ArrayList<Integer> buf2 = new ArrayList<Integer>();
+		
+		int inx = 0, jnx = 0;
+		
+		while(true) {
+			if(L_str[inx] == 1) {
+				if(R_str[jnx] == 1) {
+					buf1.add(1);
+					buf2.add(1);
+					inx++;
+					jnx++;
+				}else {
+					int i = jnx;
+					while(R_str[i] != 1) {
+						buf1.add(2);
+						i++;
+					}
+				
+				}
+			}else {
+			
+			}
+		}
+
+	}
 }
