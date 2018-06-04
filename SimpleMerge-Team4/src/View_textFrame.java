@@ -65,6 +65,8 @@ public class View_textFrame extends JPanel {
 	}
 	
 	public void setUIText(String str) {
+		textClear();
+		
 		ta.setText(str);
 	}
 	
@@ -90,13 +92,14 @@ public class View_textFrame extends JPanel {
 	
 	public void diffView(int[] diffLine) {
 		String[] str = getUIText().split("\n");
+		int jnx = 0;
 		
 		textClear();
 		
 		for(int inx = 0; inx < diffLine.length; inx++) {
 			String buf;
-			if(inx < str.length) {
-				buf = str[inx];
+			if(jnx < str.length) {
+				buf = str[jnx];
 			}else {
 				buf = "";
 			}
@@ -104,15 +107,26 @@ public class View_textFrame extends JPanel {
 			if(diffLine[inx] == 0) {
 				try {
 					styleDoc.insertString(styleDoc.getLength(), buf + "\t\n", AttributeUtil.getDiffAttribute());
+					jnx++;
 				} catch (BadLocationException e) {
 					e.printStackTrace();
 				}
-			}else {
+			}else if(diffLine[inx] == 1){
 				try {
 					styleDoc.insertString(styleDoc.getLength(), buf + "\n", AttributeUtil.getSameAttribute());
+					jnx++;
 				} catch (BadLocationException e) {
 					e.printStackTrace();
 				}
+			}else if(diffLine[inx] == 2) {
+				try {
+					styleDoc.insertString(styleDoc.getLength(), "\t\n", AttributeUtil.getEmptyAttribute());
+				} catch (BadLocationException e) {
+					e.printStackTrace();
+				}
+			}
+			else {
+				
 			}
 		}
 	}

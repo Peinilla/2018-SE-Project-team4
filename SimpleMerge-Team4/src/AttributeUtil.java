@@ -5,7 +5,7 @@ import java.awt.*;
 public class AttributeUtil {
     public static SimpleAttributeSet getSameAttribute(){
         SimpleAttributeSet addedAttribute = new SimpleAttributeSet();
-        StyleConstants.setBackground(addedAttribute, Color.YELLOW);
+        StyleConstants.setBackground(addedAttribute, Color.WHITE);
         return addedAttribute;
     }
 

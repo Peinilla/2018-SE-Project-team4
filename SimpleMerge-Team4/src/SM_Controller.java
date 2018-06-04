@@ -18,8 +18,8 @@ public class SM_Controller implements ActionListener {
 	private void getDiff(){
 		updateTextLineNum();
 
-		view.diffView(true, model.getDiffView(true));
-		view.diffView(false, model.getDiffView(false));
+		view.diffView(true, model.getDiffView_Blank(true));
+		view.diffView(false, model.getDiffView_Blank(false));
 
 		/*
 		if(model.getDiffView(true).length > model.getDiffView(false).length) {

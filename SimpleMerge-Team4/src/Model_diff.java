@@ -95,13 +95,19 @@ public class Model_diff {
 		return diffView;
 	}
 	
-	public void getDiffView_Blank(int[] L_str, int[] R_str) {
+	public ArrayList<ArrayList<Integer>> getDiffView_Blank() {
+		int[] L_str = getDiffView(true);
+		int[] R_str = getDiffView(false);
+		
 		ArrayList<Integer> buf1 = new ArrayList<Integer>();
 		ArrayList<Integer> buf2 = new ArrayList<Integer>();
 		
+		ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+		
+		
 		int inx = 0, jnx = 0;
 		
-		while(true) {
+		while(inx < L_str.length && jnx < R_str.length) {
 			if(L_str[inx] == 1) {
 				if(R_str[jnx] == 1) {
 					buf1.add(1);
@@ -109,17 +115,34 @@ public class Model_diff {
 					inx++;
 					jnx++;
 				}else {
-					int i = jnx;
-					while(R_str[i] != 1) {
-						buf1.add(2);
-						i++;
-					}
-				
+					buf1.add(2);
+					buf2.add(0);
+					jnx++;
 				}
 			}else {
-			
+				if(R_str[jnx] == 1) {
+					buf1.add(0);
+					buf2.add(2);
+					inx++;
+				}else {
+					buf1.add(0);
+					buf2.add(0);
+					inx++;
+					jnx++;
+				}
 			}
 		}
-
+		for(; inx < L_str.length; inx ++) {
+			buf1.add(L_str[inx]);
+		}
+		
+		for(; jnx < R_str.length; jnx ++) {
+			buf2.add(R_str[jnx]);
+		}
+		
+		result.add(buf1);
+		result.add(buf2);
+		
+		return result;
 	}
 }

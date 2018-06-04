@@ -105,10 +105,24 @@ public class SM_Model {
 		return buf;
 	}
 	
-	public int[] getDiffView(boolean isTwo){
-		_model_diff = new Model_diff(L_str, R_str);
+	public int[] getDiffView_Blank(boolean isLeft){
+		int[] result;
+		ArrayList<ArrayList<Integer>> buf = new ArrayList<ArrayList<Integer>>();
+		int inx = 0;
 		
-		return _model_diff.getDiffView(isTwo);
+		_model_diff = new Model_diff(L_str, R_str);
+		buf = _model_diff.getDiffView_Blank();
+		
+		if(!isLeft) {
+			inx = 1;
+		}
+		
+		result = new int[buf.get(inx).size()];
+		for(int jnx = 0; jnx < buf.get(inx).size(); jnx++) {
+			result[jnx] = buf.get(inx).get(jnx);
+		}
+		
+		return result;
 	}
 	
 	public String setLineNum(String str) {
