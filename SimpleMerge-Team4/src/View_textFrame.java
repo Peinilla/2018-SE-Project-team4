@@ -111,7 +111,7 @@ public class View_textFrame extends JPanel {
 				}
 			}else {
 				try {
-					styleDoc.insertString(styleDoc.getLength(), buf + "\n", AttributeUtil.getDefaultAttribute());
+					styleDoc.insertString(styleDoc.getLength(), buf + "\n", AttributeUtil.getSameAttribute());
 				} catch (BadLocationException e) {
 					e.printStackTrace();
 				}

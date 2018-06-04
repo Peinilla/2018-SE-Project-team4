@@ -126,15 +126,22 @@ public class View_mainFrame extends JFrame{
 	}
 	
 	public void setEdit(boolean isLeft) {
-		boolean flag;
 		if(isLeft) {
-			flag = text1.ta.isEditable();
+			boolean flag = text1.ta.isEditable();
 			text1.setEdit(!flag);
 			text1.btn_if_Editing(flag);
 		}else {
-			flag = text2.ta.isEditable();
+			boolean flag = text2.ta.isEditable();
 			text2.setEdit(!flag);
 			text2.btn_if_Editing(flag);
+		}
+		
+		if(text1.ta.isEditable() || text2.ta.isEditable()) {
+			btn_diff.setEnabled(false);
+			btn_merge.setEnabled(false);
+		}else {
+			btn_diff.setEnabled(true);
+			btn_merge.setEnabled(true);
 		}
 	}
 	
@@ -148,9 +155,11 @@ public class View_mainFrame extends JFrame{
 		return bool;
 	}
 	
-	public void diffView(int[] diffLine) {
-		text1.diffView(diffLine);
-		text2.diffView(diffLine);
-		
+	public void diffView(boolean isLeft, int[] diffLine) {
+		if(isLeft) {
+			text1.diffView(diffLine);
+		}else {
+			text2.diffView(diffLine);
+		}
 	}
 }
