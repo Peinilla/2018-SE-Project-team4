@@ -11,12 +11,14 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class View_mainFrame extends JFrame{
+	final static boolean LEFT = true;
+	final static boolean RIGHT = false;
 	
 	final int WIDTH=1200, HEIGHT=800;
 
 	JPanel panel_ta;
-	View_textFrame text1 = new View_textFrame(true);
-	View_textFrame text2 = new View_textFrame(false);
+	View_textFrame text1 = new View_textFrame(LEFT);
+	View_textFrame text2 = new View_textFrame(RIGHT);
 	
 	JPanel panel_btn;
 	JButton btn_merge_L;
@@ -35,8 +37,8 @@ public class View_mainFrame extends JFrame{
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(WIDTH, HEIGHT);
-		this.setResizable(false);
-		this.setVisible(true);
+		this.setResizable(RIGHT);
+		this.setVisible(LEFT);
 		// Frame Init
 
 		panelInit();
@@ -57,9 +59,9 @@ public class View_mainFrame extends JFrame{
 		
 		jfc.updateUI();
         jfc.setFileFilter(new FileNameExtensionFilter("txt", "txt"));
-        jfc.setMultiSelectionEnabled(false);
+        jfc.setMultiSelectionEnabled(RIGHT);
         
-        setDiffMode(false);
+        setDiffMode(RIGHT);
 	}
 	
 	public void panelInit() {
@@ -132,7 +134,7 @@ public class View_mainFrame extends JFrame{
 	}
 	
 	public void setEdit(boolean isLeft) {
-		setDiffMode(false); // disEnable DiffMode
+		setDiffMode(RIGHT); // disEnable DiffMode
 		
 		if(isLeft) {
 			boolean flag = text1.ta.isEditable();
@@ -145,9 +147,9 @@ public class View_mainFrame extends JFrame{
 		}
 		
 		if(text1.ta.isEditable() || text2.ta.isEditable()) {
-			btn_diff.setEnabled(false);
+			btn_diff.setEnabled(RIGHT);
 		}else {
-			btn_diff.setEnabled(true);
+			btn_diff.setEnabled(LEFT);
 		}
 	}
 	
@@ -163,7 +165,7 @@ public class View_mainFrame extends JFrame{
 	}
 	
 	public void diffView(boolean isLeft, int[] diffLine) {
-		setDiffMode(true); // Enable DiffMode
+		setDiffMode(LEFT); // Enable DiffMode
 		
 		if(isLeft) {
 			text1.diffView(diffLine);
@@ -174,11 +176,11 @@ public class View_mainFrame extends JFrame{
 	
 	public void setDiffMode(boolean bool) {
 		if(bool) {
-			btn_merge_L.setEnabled(true);
-			btn_merge_R.setEnabled(true);
+			btn_merge_L.setEnabled(LEFT);
+			btn_merge_R.setEnabled(LEFT);
 		}else {
-			btn_merge_L.setEnabled(false);
-			btn_merge_R.setEnabled(false);
+			btn_merge_L.setEnabled(RIGHT);
+			btn_merge_R.setEnabled(RIGHT);
 		}
 	}
 }

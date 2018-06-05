@@ -4,7 +4,9 @@ import java.util.List;
 
 
 public class Model_diff {
-
+	final static boolean LEFT = true;
+	final static boolean RIGHT = false;
+	
 	ArrayList<String> L_str = new ArrayList<String>();
 	ArrayList<String> R_str = new ArrayList<String>();
 
@@ -96,8 +98,8 @@ public class Model_diff {
 	}
 	
 	public ArrayList<ArrayList<Integer>> getDiffView_Blank() {
-		int[] L_str = getDiffView(true);
-		int[] R_str = getDiffView(false);
+		int[] L_str = getDiffView(LEFT);
+		int[] R_str = getDiffView(RIGHT);
 		
 		ArrayList<Integer> buf1 = new ArrayList<Integer>();
 		ArrayList<Integer> buf2 = new ArrayList<Integer>();

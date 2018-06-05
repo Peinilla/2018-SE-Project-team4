@@ -1,13 +1,12 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
-
-
 public class SM_Controller implements ActionListener {
+	final static boolean LEFT = true;
+	final static boolean RIGHT = false;
+	
 	private SM_Model model;
 	private View_mainFrame view;
-	private boolean isEdit;
 	
 	public SM_Controller(SM_Model _model,View_mainFrame _view){
 		model = _model;
@@ -20,11 +19,11 @@ public class SM_Controller implements ActionListener {
 	private void getDiff(){
 		updateTextLineNum();
 
-		view.diffView(true, model.getDiffView_Blank(true));
-		view.diffView(false, model.getDiffView_Blank(false));
+		view.diffView(LEFT, model.getDiffView_Blank(LEFT));
+		view.diffView(RIGHT, model.getDiffView_Blank(RIGHT));
 	}
 	
-	private void merge(boolean toLeft){ //isLeft가 트루면 두번째(오른쪽)텍스트를 의미함
+	private void merge(boolean toLeft){ //toLeft가 트루면 두번째(오른쪽)텍스트를 의미함
 		
 		if(toLeft) {
 			model.merge_RtoL();
@@ -41,7 +40,7 @@ public class SM_Controller implements ActionListener {
 		updateText(isLeft);
 
 		try {
-			if(!str.equals(null)) {
+			if(str != null) {
 				model.saveText(str, isLeft);
 			}else {
 				
@@ -58,7 +57,7 @@ public class SM_Controller implements ActionListener {
 		updateText(isLeft);
 
 		try {
-			if(!str.equals(null)) {
+			if(str != null) {
 				model.openText(str, isLeft);
 			}else {
 				
@@ -94,8 +93,8 @@ public class SM_Controller implements ActionListener {
 	}
 
 	private void updateText() {
-		view.setUIText(model.getAll(true), true);
-		view.setUIText(model.getAll(false), false);
+		view.setUIText(model.getAll(LEFT), LEFT);
+		view.setUIText(model.getAll(RIGHT), RIGHT);
 	}
 	
 	private void updateTextLineNum(boolean isLeft) {
@@ -103,38 +102,38 @@ public class SM_Controller implements ActionListener {
 	}
 	
 	private void updateTextLineNum() {
-		view.setUIText(model.getAllLineNum(true), true);
-		view.setUIText(model.getAllLineNum(false), false);
+		view.setUIText(model.getAllLineNum(LEFT), LEFT);
+		view.setUIText(model.getAllLineNum(RIGHT), RIGHT);
 	}
 	
 	public void actionPerformed(ActionEvent e){
 		switch (e.getActionCommand()) {
 		case "Right_Load" :
-			load(false);
+			load(RIGHT);
 			break;
 		case "Right_Save" :
-			save(false);
+			save(RIGHT);
 			break;
 		case "Right_Edit" :
-			edit(false);
+			edit(RIGHT);
 			break;
 		case "Left_Load" :
-			load(true);
+			load(LEFT);
 			break;
 		case "Left_Save" :
-			save(true);
+			save(LEFT);
 			break;
 		case "Left_Edit" :
-			edit(true);
+			edit(LEFT);
 			break;
 		case "Diff" :
 			getDiff();
 			break;
 		case "<<<" :
-			merge(true);
+			merge(LEFT);
 			break;
 		case ">>>" :
-			merge(false);
+			merge(RIGHT);
 			break;
 		default:
 			break;

@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Arrays;
 
 public class SM_Model {
+	final static boolean LEFT = true;
+	final static boolean RIGHT = false;
 	
 	List<String> L_str;
 	List<String> R_str; 
@@ -148,8 +150,8 @@ public class SM_Model {
 	}
 	
 	public void merge_LtoR() {
-		int[] L_Line = getDiffView_Blank(true);
-		int[] R_Line = getDiffView_Blank(false);
+		int[] L_Line = getDiffView_Blank(LEFT);
+		int[] R_Line = getDiffView_Blank(RIGHT);
 		int inx = 0;
 		int jnx = 0;
 		
@@ -196,8 +198,8 @@ public class SM_Model {
 	}
 
 	public void merge_RtoL() {
-		int[] L_Line = getDiffView_Blank(true);
-		int[] R_Line = getDiffView_Blank(false);
+		int[] L_Line = getDiffView_Blank(LEFT);
+		int[] R_Line = getDiffView_Blank(RIGHT);
 		int inx = 0;
 		int jnx = 0;
 		
