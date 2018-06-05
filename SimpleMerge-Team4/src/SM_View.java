@@ -10,7 +10,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class View_mainFrame extends JFrame{
+public class SM_View extends JFrame{
 	final static boolean LEFT = true;
 	final static boolean RIGHT = false;
 	
@@ -27,7 +27,7 @@ public class View_mainFrame extends JFrame{
 	
 	JFileChooser jfc;
 	
-	public View_mainFrame() {
+	public SM_View() {
 		init();
 	}
 	

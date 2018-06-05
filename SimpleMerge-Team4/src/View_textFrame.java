@@ -11,6 +11,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 
@@ -91,6 +93,8 @@ public class View_textFrame extends JPanel {
 	}
 	
 	public void diffView(int[] diffLine) {
+		SimpleAttributeSet Attribute = new SimpleAttributeSet();
+
 		String[] str = getUIText().split("\n");
 		int jnx = 0;
 		
@@ -104,23 +108,26 @@ public class View_textFrame extends JPanel {
 				buf = "";
 			}
 			
-			if(diffLine[inx] == 0) {
+			if(diffLine[inx] == 0) { //diff
 				try {
-					styleDoc.insertString(styleDoc.getLength(), buf + "\t\n", AttributeUtil.getDiffAttribute());
+			        StyleConstants.setBackground(Attribute, Color.YELLOW);
+					styleDoc.insertString(styleDoc.getLength(), buf + "\t\n", Attribute);
 					jnx++;
 				} catch (BadLocationException e) {
 					e.printStackTrace();
 				}
-			}else if(diffLine[inx] == 1){
+			}else if(diffLine[inx] == 1){ //same
 				try {
-					styleDoc.insertString(styleDoc.getLength(), buf + "\n", AttributeUtil.getSameAttribute());
+			        StyleConstants.setBackground(Attribute, Color.WHITE);
+					styleDoc.insertString(styleDoc.getLength(), buf + "\n", Attribute);
 					jnx++;
 				} catch (BadLocationException e) {
 					e.printStackTrace();
 				}
-			}else if(diffLine[inx] == 2) {
+			}else if(diffLine[inx] == 2) { //blank
 				try {
-					styleDoc.insertString(styleDoc.getLength(), "\t\n", AttributeUtil.getEmptyAttribute());
+			        StyleConstants.setBackground(Attribute, Color.GRAY);
+					styleDoc.insertString(styleDoc.getLength(), "\t\n", Attribute);
 				} catch (BadLocationException e) {
 					e.printStackTrace();
 				}

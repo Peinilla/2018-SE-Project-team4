@@ -23,7 +23,7 @@ public class Model_diff {
 		setLCS();
 	}
 
-	public void setLCS(){
+	public void setLCS(){ //lcs table make
 		for(int inx = 1; inx <= L_str.size(); inx++) {
 			String buf1 = L_str.get(inx - 1);
 			
@@ -46,7 +46,7 @@ public class Model_diff {
 		}
 	}
 	
-	public ArrayList<String> getDiff(){
+	public ArrayList<String> getDiff(){ //array list 
 		ArrayList<String> diffStr = new ArrayList<String>();
 		
 		int inx = L_str.size();
@@ -69,7 +69,7 @@ public class Model_diff {
 		return diffStr;
 	}
 	
-	public int[] getDiffView(boolean isLeft) {
+	public int[] getDiffView(boolean isLeft) { // int table
 		int[] diffView;
 		ArrayList<String> diffStr = getDiff();
 		ArrayList<String> buf = new ArrayList<String>();
@@ -97,7 +97,7 @@ public class Model_diff {
 		return diffView;
 	}
 	
-	public ArrayList<ArrayList<Integer>> getDiffView_Blank() {
+	public ArrayList<ArrayList<Integer>> getDiffView_Blank() { //blank table
 		int[] L_str = getDiffView(LEFT);
 		int[] R_str = getDiffView(RIGHT);
 		
