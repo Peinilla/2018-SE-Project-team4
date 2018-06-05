@@ -19,7 +19,8 @@ public class View_mainFrame extends JFrame{
 	View_textFrame text2 = new View_textFrame(false);
 	
 	JPanel panel_btn;
-	JButton btn_merge;
+	JButton btn_merge_L;
+	JButton btn_merge_R;
 	JButton btn_diff;
 	
 	JFileChooser jfc;
@@ -57,6 +58,8 @@ public class View_mainFrame extends JFrame{
 		jfc.updateUI();
         jfc.setFileFilter(new FileNameExtensionFilter("txt", "txt"));
         jfc.setMultiSelectionEnabled(false);
+        
+        setDiffMode(false);
 	}
 	
 	public void panelInit() {
@@ -65,12 +68,14 @@ public class View_mainFrame extends JFrame{
 		panel_ta.add(text2);
 		///textFrame panel Init
 		
-		btn_merge = new JButton("Merge");
+		btn_merge_L = new JButton("<<<");
+		btn_merge_R = new JButton(">>>");
 		btn_diff = new JButton("Diff");
 		
 		panel_btn = new JPanel(new FlowLayout());
 		panel_btn.add(btn_diff);
-		panel_btn.add(btn_merge);
+		panel_btn.add(btn_merge_L);
+		panel_btn.add(btn_merge_R);
 	}
 	
 	public void setUIText(String str, boolean isLeft) {
@@ -91,8 +96,9 @@ public class View_mainFrame extends JFrame{
 	
 	public void addListnerController(SM_Controller ctrl) {
 		btn_diff.addActionListener(ctrl);
-		btn_merge.addActionListener(ctrl);
-		
+		btn_merge_L.addActionListener(ctrl);
+		btn_merge_R.addActionListener(ctrl);
+
 		text1.addListnerController(ctrl);
 		text2.addListnerController(ctrl);
 	}
@@ -126,6 +132,8 @@ public class View_mainFrame extends JFrame{
 	}
 	
 	public void setEdit(boolean isLeft) {
+		setDiffMode(false); // disEnable DiffMode
+		
 		if(isLeft) {
 			boolean flag = text1.ta.isEditable();
 			text1.setEdit(!flag);
@@ -138,10 +146,8 @@ public class View_mainFrame extends JFrame{
 		
 		if(text1.ta.isEditable() || text2.ta.isEditable()) {
 			btn_diff.setEnabled(false);
-			btn_merge.setEnabled(false);
 		}else {
 			btn_diff.setEnabled(true);
-			btn_merge.setEnabled(true);
 		}
 	}
 	
@@ -157,11 +163,22 @@ public class View_mainFrame extends JFrame{
 	}
 	
 	public void diffView(boolean isLeft, int[] diffLine) {
+		setDiffMode(true); // Enable DiffMode
 		
 		if(isLeft) {
 			text1.diffView(diffLine);
 		}else {
 			text2.diffView(diffLine);
+		}
+	}
+	
+	public void setDiffMode(boolean bool) {
+		if(bool) {
+			btn_merge_L.setEnabled(true);
+			btn_merge_R.setEnabled(true);
+		}else {
+			btn_merge_L.setEnabled(false);
+			btn_merge_R.setEnabled(false);
 		}
 	}
 }

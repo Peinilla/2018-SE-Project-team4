@@ -17,6 +17,14 @@ public class SM_Model {
 	public SM_Model(){
 		L_str = new ArrayList<String>();
 		R_str = new ArrayList<String>();
+		
+		init();
+	}
+	
+	public void init() {
+		L_str.add("");
+		R_str.add("");
+
 	}
 	
 	public void openText(String path, boolean isLeft) throws FileNotFoundException{
@@ -77,8 +85,10 @@ public class SM_Model {
 		String result = new String();
 		
 		for(int inx = 0; inx < str.size(); inx++) {
-			result += str.get(inx) +"\n";
+			result +=  "\n" + str.get(inx);
 		}
+
+		result = result.replaceFirst("\n", "");
 		
 		return result;
 	}
@@ -92,8 +102,10 @@ public class SM_Model {
 		}
 		
 		for(int inx = 0; inx < str.size(); inx++) {
-			result += buf.get(inx) +"\n";
+			result += "\n" + buf.get(inx);
 		}
+		
+		result = result.replaceFirst("\n", "");
 		
 		return result;
 	}
@@ -133,5 +145,101 @@ public class SM_Model {
 	
 	public void delLineNum(String str) {
 		
+	}
+	
+	public void merge_LtoR() {
+		int[] L_Line = getDiffView_Blank(true);
+		int[] R_Line = getDiffView_Blank(false);
+		int inx = 0;
+		int jnx = 0;
+		
+		int L_index = 0;
+		int R_index = 0;
+		
+		boolean isLeftLarge = L_Line.length > R_Line.length;
+		
+		int minLength = Math.min(L_Line.length, R_Line.length);
+		
+		for(inx = 0; inx < minLength; inx++) {
+			if(L_Line[inx] != 1) { // if L is not 1, also R is not 1
+				if(L_Line[inx] == 2) { 
+					// L == 2 , R == 0
+					R_str.remove(R_index);
+				}else if(L_Line[inx] == 0) {
+					if(R_Line[inx] ==2) {
+						// L == 0 , R == 2
+						R_str.add(R_index, L_str.get(L_index));
+					}else {
+						// L == 0 , R == 0
+						R_str.set(R_index, L_str.get(L_index));
+					}
+				}else {
+				}
+				return;
+			}else {
+				if(L_Line[inx] != 2) {
+					L_index ++;
+				}
+				if(R_Line[inx] != 2) {
+					R_index ++;
+				}
+			}
+		} // check until min Length
+		
+		if(isLeftLarge) { // L string is Large, add to Right
+			R_str.add(R_index, L_str.get(L_index));
+		}
+		else if(L_Line.length == R_Line.length){
+		}else { // L string is short, remove Rigth str
+			R_str.remove(R_index);
+		}
+	}
+
+	public void merge_RtoL() {
+		int[] L_Line = getDiffView_Blank(true);
+		int[] R_Line = getDiffView_Blank(false);
+		int inx = 0;
+		int jnx = 0;
+		
+		int L_index = 0;
+		int R_index = 0;
+		
+		boolean isLeftLarge = L_Line.length > R_Line.length;
+		
+		int minLength = Math.min(L_Line.length, R_Line.length);
+		
+		for(inx = 0; inx < minLength; inx++) {
+			if(L_Line[inx] != 1) { // if L is not 1, also R is not 1
+				if(L_Line[inx] == 2) { 
+					// L == 2 , R == 0
+					L_str.add(L_index, R_str.get(R_index));	
+				}else if(L_Line[inx] == 0) {
+					if(R_Line[inx] ==2) {
+						// L == 0 , R == 2
+						L_str.remove(L_index);
+					}else {
+						// L == 0 , R == 0
+						L_str.set(L_index, R_str.get(R_index));
+					}
+				}else {
+				}
+				return;
+			}else {
+				if(L_Line[inx] != 2) {
+					L_index ++;
+				}
+				if(R_Line[inx] != 2) {
+					R_index ++;
+				}
+			}
+		} // check until min Length
+		
+		if(isLeftLarge) { // L string is Large, remove Left str
+			L_str.remove(L_index);
+		}
+		else if(L_Line.length == R_Line.length){
+		}else { // L string is short, str to Left
+			L_str.add(L_index, R_str.get(R_index));	
+		}
 	}
 }

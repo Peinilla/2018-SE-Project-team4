@@ -13,6 +13,8 @@ public class SM_Controller implements ActionListener {
 		model = _model;
 		view = _view;
 		_view.addListnerController(this);
+		
+		updateTextLineNum();
 	}
 	
 	private void getDiff(){
@@ -20,17 +22,17 @@ public class SM_Controller implements ActionListener {
 
 		view.diffView(true, model.getDiffView_Blank(true));
 		view.diffView(false, model.getDiffView_Blank(false));
-
-		/*
-		if(model.getDiffView(true).length > model.getDiffView(false).length) {
-			view.diffView(model.getDiffView(true));
-		} else {
-			view.diffView(model.getDiffView(false));
-		}*/
 	}
 	
-	private void merge(boolean isLeft){ //isLeft가 트루면 두번째(오른쪽)텍스트를 의미함
+	private void merge(boolean toLeft){ //isLeft가 트루면 두번째(오른쪽)텍스트를 의미함
 		
+		if(toLeft) {
+			model.merge_RtoL();
+		}else {
+			model.merge_LtoR();
+		}
+		getDiff();
+
 	}
 	
 	private void save(boolean isLeft){
@@ -68,12 +70,19 @@ public class SM_Controller implements ActionListener {
 	}
 	
 	private void edit(boolean isLeft){
+		
+		//updateTextLineNum(); // set text normal	
 		if(view.isEditing(isLeft)) {
 			view.setEdit(isLeft);
 			model.setText(view.getUIText(isLeft), isLeft);
 			updateTextLineNum(isLeft);
 			
 		}else {
+			if(view.isEditing(!isLeft)) {
+				updateTextLineNum(isLeft);
+			}else {
+				updateTextLineNum();
+			}
 			updateText(isLeft);
 			view.setEdit(isLeft);
 			model.setText(view.getUIText(isLeft), isLeft);
@@ -121,7 +130,11 @@ public class SM_Controller implements ActionListener {
 		case "Diff" :
 			getDiff();
 			break;
-		case "Merge" :
+		case "<<<" :
+			merge(true);
+			break;
+		case ">>>" :
+			merge(false);
 			break;
 		default:
 			break;
