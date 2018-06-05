@@ -68,7 +68,7 @@ WinMerge, WinDiff, BeyondCompare와 같은 유사한 현존하는 제품을 참�
 
 ### 2      전체 설명(Overall Description)
 
-##### 2.1     제품기능(ProductFeature)
+##### 2.1     제품기능(Product Feature)
 
 (1) 두개의 편집 패널과 버튼
 
@@ -91,7 +91,7 @@ WinMerge, WinDiff, BeyondCompare와 같은 유사한 현존하는 제품을 참�
   병합 : 두가지의 기능이 존재한다. "CopytoRight"는 왼쪽패널에서 선택한 블록을 오른쪽 패널에 표시된 파일로 복사한다.
   "CopytoLeft"는 왼쪽패널에 표시된 파일이 복사된다.
 
-##### 2.2     운영환경(OperationEnvironment)
+##### 2.2     운영환경(Operation Environment)
 
 Java Window form을 이용한 개발
 
