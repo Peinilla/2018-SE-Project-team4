@@ -143,7 +143,6 @@ Java Window form을 이용한 개발
 ##### UC5 Diff
 ##### UC6 CopytoRight
 ##### UC7 CopytoLeft
-##### Misuse Case
 
 #### UC1 Flow of Events for the Load Use Case
 
