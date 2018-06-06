@@ -56,20 +56,18 @@
 
   3. 유스케이스(Usecase)
   
-  4. 시스템 특징(System Feature)
-  
-    4.1 시스템 특징(System Feature)
-  
-  5. 외부 인터페이스 요구사항(External Interface Requirement)
+  4. 외부 인터페이스 요구사항(External Interface Requirement)
   
     5.1 사용자 인터페이스(User Interface)
     5.2 소프트웨어 인터페이스(Software Interface)
   
-  6. 기능 이외의 다른 요구사항(Other Nonfuctional Requirement)
+  5. 기능 이외의 다른 요구사항(Other Nonfuctional Requirement)
   
-    6.1 성능 요구사항(Performance Requirement)
+    5.1 성능 요구사항(Performance Requirement)
+    5.2 성능(Performance)
+    5.3 사용성(Usability)
   
-  7. 부록(Appendix)
+  6. 부록(Appendix)
 
 ### 1       소개(Introduction)
 
@@ -81,7 +79,7 @@
 
 WinMerge, WinDiff, BeyondCompare와 같은 유사한 현존하는 제품을 참조한다.
 
-##### 1.3     독자대상 (Intend Audience)
+##### 1.3     독자대상(Intend Audience)
 
 이 SRS 문서는 중앙대학교 ICT 소프트웨어공학 팀 프로젝트를 위해서 작성되었고, 팀 프로젝트에 참여한 팀원들과 교수님 그리고 그 외의 수강생들이 독자 대상이다.
 
@@ -148,7 +146,7 @@ Java Window form을 이용한 개발
 
 1.2 Main Flow:
 프로그램을 실행했을 때 제일 먼저 활성화 되는 기능으로서, 프로그램이 실행되면 2개의 패널 위쪽에 로드 버튼이 활성화된다. 
-로드 버튼을 클릭시 파일 선택창이 나타나 유저가 파일[E1]을 선택해 온다.
+로드 버튼을 클릭시 파일 선택창이 나타나 사용자가 파일[E1]을 선택해 온다.
 
 1.3 Subflows:
 없음.
@@ -245,64 +243,33 @@ CopytoLeft 버튼을 누르면 오른쪽 패널에서 선택한 블록을 왼쪽
 7.4 Alternative Flow:
 없음.
 
-### 4      시스템 특징(System Feature)
 
-##### 4.1     시스템특징 X
+### 4      외부 인터페이스 요구사항(External Interface Requirement)
 
-3.X 철자확인과 같은 몇 단어만으로 특징을 설명한다.
+##### 4.1     사용자 인터페이스(User Interface)
 
-각각의 시스템 특징에 대해서는 3.x.1 에서 3.x.3까지의 하위절을 반복한다.
+프로그램은 사용자에게 keyboard, mouse, button event들을 허용해야만 한다.
 
-###### 가       설명과 우선순위(Description and Priority)
+##### 4.2     소프트웨어 인터페이스(Software Interface)
 
-​	기능에 대해 간단하게 설명하고 그것이 높은 우선순위인지 낮은 우선순위인지를 나타낸다. 
+JUnit 및 EasyMock를 이용하여 프레임워크 테스트를 한다. MVC Architecture 기반으로 설계한다.
 
-우선순위는 프로젝트 중에 변할 수 있는 동적인 것으로, 요구사항관리 툴을 사용한다면 요구사항 특성의 우선순위를 정의한다.
+### 5      기능 이외의 다른 요구사항(Other Nonfunctional Requirement)
 
-###### 나       자극/응답 순서(Stimulus/Response Sequence)
-
-​	입력 자극(사용자 행동, 외부 장비의 신호 또는 다른 자극)의순서와 이기능에 대한동작을 정의하는시스템 반응을나열한다. 이 자극들은 유스케이스의 초기 대화단계 또는 외부 시스템 이벤트에 해당한다.
-
-###### 다       기능요구사항(Functional requirement)
-
-​	이 기능과관련된 상세한기능 요구사항을항목으로 나열한다. 이것들은 사용자가 기능의 서비스를 수행하기 위해또는 유스케이스를 수행하기 위해 사용하는 소프트웨어의 기능들이다. 제품이 예상되는 에러 상황, 무효한입력과동작에대해 어떻게응답해야 하는지를 설명한다. 각각의 기능 요구사항에 유일한 레이블을 붙인다.
-
-### 5      외부 인터페이스 요구사항(External Interface Requirement)
-
-##### 5.1     사용자 인터페이스(User Interface)
-
-l  시스템이 요구하는 각각의 사용자 인터페이스의 논리적인 특징을 설명한다. 따라야 할 GUI표준또는 제품스타일가이드에대한 참조
-
-l  폰트, 아이콘, 버튼 레이블, 이미지, 색상 체계, 필드탭 순서, 공통으로 사용되는 컨트롤 등에 대한 표준
-
-l  화면 레이아웃 또는 해상도 제약 조건
-
-사용자 인터페이스의 설계 상세내용은 SRS가 아닌 별도의 사용자 인터페이스 명세에 문서로 정리한다.
-
-##### 5.2     소프트웨어 인터페이스(Software Interface)
-
-이 제품과 다른 소프트웨어 컴포넌트(데이터베이스, 운영체제, 툴, 라이브러리, 통합 상업용 컴포넌트)간의 연결을설명한다. 소프트웨어 컴포넌트 간에 교환되는 메시지, 데이터와 컨트롤 항목을 설명한다. 외부 소프트웨어 컴포넌트가 요구하는 서비스와 컴포넌트간의 통신 성격을 설명하고 소프트웨어 컴포넌트들이 공유할 데이터를 파악한다.
-
-=> JUnit 및 EasyMock를 이용하여 프레임워크 테스트를 한다. MVC Architecture 기반으로 설계한다.
-
-### 6      기능 이외의 다른 요구사항(Other Nonfunctional Requirement)
-
-##### 6.1     성능 요구사항(Performance Requirement)
+##### 5.1     성능 요구사항(Performance Requirement)
 
 JAVA를 이용하기 때문에 최신버젼의 JDK 필요
 
-##### 6.2     성능(Performance)
+##### 5.2     성능(Performance)
 
 Simple Merge 프로그램의 주요기능인 diff와 merge가 빠른 시간내에 신속하게 작동되도록 한다.
 
-##### 6.3     사용성(Usability)
+##### 5.3     사용성(Usability)
 
 사용자가 Simple Merge 프로그램을 잘 사용하기 위해서 텍스트가 잘 보여야 되며, 텍스트 파일들을 수정할 수 있어야 한다.
 
-##### 6.4     성능 요구사항(Performance Requirement)
 
-
-### 7      부록(Appendix)
+### 6      부록(Appendix)
 
 #### 부록 A: 용어집(Glossary)
 
@@ -310,11 +277,9 @@ Simple Merge 프로그램의 주요기능인 diff와 merge가 빠른 시간내�
 
 #### 부록 B: 분석모델(Analysis Model)
 
-데이터 플로우다이어그램, 클래스 다이어그램, 상태천이도 등과 같은 관련된 분석모델을 설명한다.
+Usecase diagram, class diagram 등과 같은 관련된 분석모델을 설명한다.
 
 #### 부록 C: 문제 목록(Issues List)
-
-해결 되어야 할 남아있는 요구사항 문제들의 동적인 목록이다. 문제들로 TBD, 미결정, 필요한 정보, 해결이 필요한 충돌 등으로 표시된 항목들이 포함된다. 이것이 반드시 SRS의 일부가 될 필요는 없지만, 일부 기업들은 SRS에 항상 TBD 목록을 첨부한다. 이 문제들을 적극적으로 해결해서 고품질의 SRS의 기본 사항을 결정하는데 방해가 되지않게 해야 한다.
 
 
 
