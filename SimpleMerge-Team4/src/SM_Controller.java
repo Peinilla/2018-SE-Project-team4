@@ -6,18 +6,18 @@ public class SM_Controller implements ActionListener {
 	final static boolean RIGHT = false;
 	
 	private SM_Model model;
-	private View_mainFrame view;
+	private SM_View view;
 	
-	public SM_Controller(SM_Model _model,View_mainFrame _view){
+	public SM_Controller(SM_Model _model,SM_View _view){
 		model = _model;
 		view = _view;
 		_view.addListnerController(this);
 		
-		updateTextLineNum();
+		updateTextAll();
 	}
 	
-	private void getDiff(){
-		updateTextLineNum();
+	private void diff(){
+		updateTextLineNumAll();
 
 		view.diffView(LEFT, model.getDiffView_Blank(LEFT));
 		view.diffView(RIGHT, model.getDiffView_Blank(RIGHT));
@@ -25,12 +25,10 @@ public class SM_Controller implements ActionListener {
 	
 	private void merge(boolean toLeft){ //toLeft가 트루면 두번째(오른쪽)텍스트를 의미함
 		
-		if(toLeft) {
-			model.merge_RtoL();
-		}else {
-			model.merge_LtoR();
-		}
-		getDiff();
+
+			model.merge(toLeft);
+		
+		diff();
 
 	}
 	
@@ -80,7 +78,7 @@ public class SM_Controller implements ActionListener {
 			if(view.isEditing(!isLeft)) {
 				updateTextLineNum(isLeft);
 			}else {
-				updateTextLineNum();
+				updateTextLineNumAll();
 			}
 			updateText(isLeft);
 			view.setEdit(isLeft);
@@ -92,7 +90,7 @@ public class SM_Controller implements ActionListener {
 		view.setUIText(model.getAll(isLeft), isLeft);
 	}
 
-	private void updateText() {
+	private void updateTextAll() {
 		view.setUIText(model.getAll(LEFT), LEFT);
 		view.setUIText(model.getAll(RIGHT), RIGHT);
 	}
@@ -101,7 +99,7 @@ public class SM_Controller implements ActionListener {
 		view.setUIText(model.getAllLineNum(isLeft), isLeft);
 	}
 	
-	private void updateTextLineNum() {
+	private void updateTextLineNumAll() {
 		view.setUIText(model.getAllLineNum(LEFT), LEFT);
 		view.setUIText(model.getAllLineNum(RIGHT), RIGHT);
 	}
@@ -127,7 +125,7 @@ public class SM_Controller implements ActionListener {
 			edit(LEFT);
 			break;
 		case "Diff" :
-			getDiff();
+			diff();
 			break;
 		case "<<<" :
 			merge(LEFT);

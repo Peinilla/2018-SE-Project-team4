@@ -19,14 +19,8 @@ public class SM_Model {
 	public SM_Model(){
 		L_str = new ArrayList<String>();
 		R_str = new ArrayList<String>();
-		
-		init();
-	}
-	
-	public void init() {
 		L_str.add("");
 		R_str.add("");
-
 	}
 	
 	public void openText(String path, boolean isLeft) throws FileNotFoundException{
@@ -77,10 +71,6 @@ public class SM_Model {
 		}else {
 			return ListToStringLineNum(R_str);
 		}
-	}
-	
-	public void setAll(FileReader rd, boolean isLeft){
-		//ÀüºÎ set
 	}
 
 	public String ListToString(List<String> str) {
@@ -149,99 +139,51 @@ public class SM_Model {
 		
 	}
 	
-	public void merge_LtoR() {
-		int[] L_Line = getDiffView_Blank(LEFT);
-		int[] R_Line = getDiffView_Blank(RIGHT);
+	public void merge(boolean direct) {
+		int[] origin = getDiffView_Blank(!direct);
+		int[] target = getDiffView_Blank(direct);
+		
 		int inx = 0;
-		int jnx = 0;
 		
-		int L_index = 0;
-		int R_index = 0;
+		int target_index = 0;
+		int origin_index = 0;
 		
-		boolean isLeftLarge = L_Line.length > R_Line.length;
+		boolean isLeftLarge = target.length > origin.length;
 		
-		int minLength = Math.min(L_Line.length, R_Line.length);
+		int minLength = Math.min(target.length, origin.length);
 		
 		for(inx = 0; inx < minLength; inx++) {
-			if(L_Line[inx] != 1) { // if L is not 1, also R is not 1
-				if(L_Line[inx] == 2) { 
-					// L == 2 , R == 0
-					R_str.remove(R_index);
-				}else if(L_Line[inx] == 0) {
-					if(R_Line[inx] ==2) {
-						// L == 0 , R == 2
-						R_str.add(R_index, L_str.get(L_index));
+			if(target[inx] != 1) { // if target is not 1, also origin is not 1
+				if(target[inx] == 2) { 
+					// target == 2 , origin == 0
+					L_str.add(target_index, R_str.get(origin_index));	
+				}else if(target[inx] == 0) {
+					if(origin[inx] ==2) {
+						// target == 0 , origin == 2
+						L_str.remove(target_index);
 					}else {
-						// L == 0 , R == 0
-						R_str.set(R_index, L_str.get(L_index));
+						// target == 0 , origin == 0
+						L_str.set(target_index, R_str.get(origin_index));
 					}
 				}else {
 				}
 				return;
 			}else {
-				if(L_Line[inx] != 2) {
-					L_index ++;
+				if(target[inx] != 2) {
+					target_index ++;
 				}
-				if(R_Line[inx] != 2) {
-					R_index ++;
-				}
-			}
-		} // check until min Length
-		
-		if(isLeftLarge) { // L string is Large, add to Right
-			R_str.add(R_index, L_str.get(L_index));
-		}
-		else if(L_Line.length == R_Line.length){
-		}else { // L string is short, remove Rigth str
-			R_str.remove(R_index);
-		}
-	}
-
-	public void merge_RtoL() {
-		int[] L_Line = getDiffView_Blank(LEFT);
-		int[] R_Line = getDiffView_Blank(RIGHT);
-		int inx = 0;
-		int jnx = 0;
-		
-		int L_index = 0;
-		int R_index = 0;
-		
-		boolean isLeftLarge = L_Line.length > R_Line.length;
-		
-		int minLength = Math.min(L_Line.length, R_Line.length);
-		
-		for(inx = 0; inx < minLength; inx++) {
-			if(L_Line[inx] != 1) { // if L is not 1, also R is not 1
-				if(L_Line[inx] == 2) { 
-					// L == 2 , R == 0
-					L_str.add(L_index, R_str.get(R_index));	
-				}else if(L_Line[inx] == 0) {
-					if(R_Line[inx] ==2) {
-						// L == 0 , R == 2
-						L_str.remove(L_index);
-					}else {
-						// L == 0 , R == 0
-						L_str.set(L_index, R_str.get(R_index));
-					}
-				}else {
-				}
-				return;
-			}else {
-				if(L_Line[inx] != 2) {
-					L_index ++;
-				}
-				if(R_Line[inx] != 2) {
-					R_index ++;
+				if(origin[inx] != 2) {
+					origin_index ++;
 				}
 			}
 		} // check until min Length
 		
-		if(isLeftLarge) { // L string is Large, remove Left str
-			L_str.remove(L_index);
+		if(isLeftLarge) { // target string is Large, remove target str
+			L_str.remove(target_index);
 		}
-		else if(L_Line.length == R_Line.length){
-		}else { // L string is short, str to Left
-			L_str.add(L_index, R_str.get(R_index));	
+		else if(target.length == origin.length){
+		}else { // target string is short, str to target
+			L_str.add(target_index, R_str.get(origin_index));	
 		}
 	}
 }
