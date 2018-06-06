@@ -304,13 +304,15 @@ Simple Merge 프로그램의 주요기능인 diff와 merge가 빠른 시간내�
 
 ### 7      부록(Appendix)
 
-## 부록 A: 용어집(Glossary)
+#### 부록 A: 용어집(Glossary)
 
-## 부록 B: 분석모델(Analysis Model)
+![screenshot2](https://user-images.githubusercontent.com/38933466/41019605-4dd2c2d4-699a-11e8-9c0f-22dbca438d7c.png)
+
+#### 부록 B: 분석모델(Analysis Model)
 
 데이터 플로우다이어그램, 클래스 다이어그램, 상태천이도 등과 같은 관련된 분석모델을 설명한다.
 
-## 부록 C: 문제 목록(Issues List)
+#### 부록 C: 문제 목록(Issues List)
 
 해결 되어야 할 남아있는 요구사항 문제들의 동적인 목록이다. 문제들로 TBD, 미결정, 필요한 정보, 해결이 필요한 충돌 등으로 표시된 항목들이 포함된다. 이것이 반드시 SRS의 일부가 될 필요는 없지만, 일부 기업들은 SRS에 항상 TBD 목록을 첨부한다. 이 문제들을 적극적으로 해결해서 고품질의 SRS의 기본 사항을 결정하는데 방해가 되지않게 해야 한다.
 
