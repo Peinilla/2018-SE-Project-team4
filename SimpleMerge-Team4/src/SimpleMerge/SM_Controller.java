@@ -49,8 +49,8 @@ public class SM_Controller implements ActionListener {
 	}
 	
 	private void merge(boolean toLeft){ 
-		ArrayList<String> origin_str = new ArrayList<String>();
-		ArrayList<String> target_str = new ArrayList<String>();
+		ArrayList<String> origin_str;
+		ArrayList<String> target_str;
 	
 		if(toLeft) {
 			origin_str = (ArrayList<String>) model.R_str;
@@ -87,6 +87,7 @@ public class SM_Controller implements ActionListener {
 					}
 				}else {
 				}
+				diff();
 				return;
 			}else {
 				if(target[inx] != 2) {
