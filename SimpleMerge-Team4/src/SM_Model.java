@@ -14,7 +14,7 @@ public class SM_Model {
 	List<String> R_str; 
 	//FileReader 대신 한줄의 스트링 리스트를 저장
 	
-	Model_diff _model_diff;
+	SM_Controller_LCS _ctrl_dfiff;
 	
 	public SM_Model(){
 		L_str = new ArrayList<String>();
@@ -109,26 +109,6 @@ public class SM_Model {
 		return buf;
 	}
 	
-	public int[] getDiffView_Blank(boolean isLeft){
-		int[] result;
-		ArrayList<ArrayList<Integer>> buf = new ArrayList<ArrayList<Integer>>();
-		int inx = 0;
-		
-		_model_diff = new Model_diff(L_str, R_str);
-		buf = _model_diff.getDiffView_Blank();
-		
-		if(!isLeft) {
-			inx = 1;
-		}
-		
-		result = new int[buf.get(inx).size()];
-		for(int jnx = 0; jnx < buf.get(inx).size(); jnx++) {
-			result[jnx] = buf.get(inx).get(jnx);
-		}
-		
-		return result;
-	}
-	
 	public String setLineNum(String str) {
 		int inx = 1;
 		
@@ -140,50 +120,6 @@ public class SM_Model {
 	}
 	
 	public void merge(boolean direct) {
-		int[] origin = getDiffView_Blank(!direct);
-		int[] target = getDiffView_Blank(direct);
 		
-		int inx = 0;
-		
-		int target_index = 0;
-		int origin_index = 0;
-		
-		boolean isLeftLarge = target.length > origin.length;
-		
-		int minLength = Math.min(target.length, origin.length);
-		
-		for(inx = 0; inx < minLength; inx++) {
-			if(target[inx] != 1) { // if target is not 1, also origin is not 1
-				if(target[inx] == 2) { 
-					// target == 2 , origin == 0
-					L_str.add(target_index, R_str.get(origin_index));	
-				}else if(target[inx] == 0) {
-					if(origin[inx] ==2) {
-						// target == 0 , origin == 2
-						L_str.remove(target_index);
-					}else {
-						// target == 0 , origin == 0
-						L_str.set(target_index, R_str.get(origin_index));
-					}
-				}else {
-				}
-				return;
-			}else {
-				if(target[inx] != 2) {
-					target_index ++;
-				}
-				if(origin[inx] != 2) {
-					origin_index ++;
-				}
-			}
-		} // check until min Length
-		
-		if(isLeftLarge) { // target string is Large, remove target str
-			L_str.remove(target_index);
-		}
-		else if(target.length == origin.length){
-		}else { // target string is short, str to target
-			L_str.add(target_index, R_str.get(origin_index));	
-		}
 	}
 }
