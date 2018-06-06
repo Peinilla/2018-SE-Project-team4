@@ -38,16 +38,14 @@ public class SM_View extends JFrame{
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(WIDTH, HEIGHT);
-		this.setResizable(RIGHT);
-		this.setVisible(LEFT);
-		// Frame Init
+		this.setResizable(true);
+		this.setVisible(true);
 
 		panelInit();
 
 		this.setLayout(new BorderLayout());
 		this.add(panel_btn, "North");
 		this.add(panel_ta, "Center");
-		// Frame Layout Controll
 		
 		jfc = new JFileChooser();
 		
@@ -57,19 +55,19 @@ public class SM_View extends JFrame{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		jfc.updateUI();
         jfc.setFileFilter(new FileNameExtensionFilter("txt", "txt"));
-        jfc.setMultiSelectionEnabled(RIGHT);
+        // Set Filter only .txt can be selected
+        jfc.setMultiSelectionEnabled(false);
         
-        setDiffMode(RIGHT);
+        
+        setDiffMode(false);
 	}
 	
 	public void panelInit() {
 		panel_ta = new JPanel(new FlowLayout());
 		panel_ta.add(text1);
 		panel_ta.add(text2);
-		///textFrame panel Init
 		
 		btn_merge_L = new JButton("<<<");
 		btn_merge_R = new JButton(">>>");
@@ -97,6 +95,9 @@ public class SM_View extends JFrame{
 		}
 	}
 	
+	/*
+	 * Add SM_Controller as ActionListener to the Buttons
+	 */
 	public void addListnerController(SM_Controller ctrl) {
 		btn_diff.addActionListener(ctrl);
 		btn_merge_L.addActionListener(ctrl);
@@ -106,6 +107,9 @@ public class SM_View extends JFrame{
 		text2.addListnerController(ctrl);
 	}
 	
+	/*
+	 * Use jfc.showOpen/SaveDialog(), return file path
+	 */
 	public String getFileOpen() {
 		if(jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
 			String str = jfc.getSelectedFile().toString();
@@ -121,7 +125,7 @@ public class SM_View extends JFrame{
 	}
 	
 	public String getFileSave() {
-		if(jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+		if(jfc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
 			String str = jfc.getSelectedFile().toString();
 			if(str.substring(str.length()-4).equals(".txt")) {
 				return str;
@@ -135,7 +139,8 @@ public class SM_View extends JFrame{
 	}
 	
 	public void setEdit(boolean isLeft) {
-		setDiffMode(RIGHT); // disEnable DiffMode
+		setDiffMode(false);
+		// when editing, Merge Disable
 		
 		if(isLeft) {
 			boolean flag = text1.ta.isEditable();
@@ -148,9 +153,9 @@ public class SM_View extends JFrame{
 		}
 		
 		if(text1.ta.isEditable() || text2.ta.isEditable()) {
-			btn_diff.setEnabled(RIGHT);
+			btn_diff.setEnabled(false);
 		}else {
-			btn_diff.setEnabled(LEFT);
+			btn_diff.setEnabled(true);
 		}
 	}
 	
@@ -166,7 +171,8 @@ public class SM_View extends JFrame{
 	}
 	
 	public void diffView(boolean isLeft, int[] diffLine) {
-		setDiffMode(LEFT); // Enable DiffMode
+		setDiffMode(true);
+		// Merge enabled after Diff();
 		
 		if(isLeft) {
 			text1.diffView(diffLine);
@@ -175,13 +181,16 @@ public class SM_View extends JFrame{
 		}
 	}
 	
+	/*
+	 * set Merge Enabled / Disable
+	 */
 	public void setDiffMode(boolean bool) {
 		if(bool) {
-			btn_merge_L.setEnabled(LEFT);
-			btn_merge_R.setEnabled(LEFT);
+			btn_merge_L.setEnabled(true);
+			btn_merge_R.setEnabled(true);
 		}else {
-			btn_merge_L.setEnabled(RIGHT);
-			btn_merge_R.setEnabled(RIGHT);
+			btn_merge_L.setEnabled(false);
+			btn_merge_R.setEnabled(false);
 		}
 	}
 }

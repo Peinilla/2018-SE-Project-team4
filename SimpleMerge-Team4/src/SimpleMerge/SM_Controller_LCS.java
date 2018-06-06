@@ -24,7 +24,11 @@ public class SM_Controller_LCS {
 		setLCS();
 	}
 
-	public void setLCS(){ //lcs table make
+	/*
+	 * Use L_str & R_str to Create LCS table
+	 * LCS table is int Array L_str.size() + 1 * R_str.size()
+	 */
+	public void setLCS(){ 
 		for(int inx = 1; inx <= L_str.size(); inx++) {
 			String buf1 = L_str.get(inx - 1);
 			
@@ -47,6 +51,9 @@ public class SM_Controller_LCS {
 		}
 	}
 	
+	/*
+	 * Use LCS map, and Find LCS String array
+	 */
 	public ArrayList<String> getDiff(){ //array list 
 		ArrayList<String> diffStr = new ArrayList<String>();
 		
@@ -70,6 +77,10 @@ public class SM_Controller_LCS {
 		return diffStr;
 	}
 	
+	/*
+	 * Compare origin strArray and LCS strArray
+	 * 1 = Same Line , 0 = Different Line
+	 */
 	public int[] getDiffView(boolean isLeft) { // int table
 		int[] diffView;
 		ArrayList<String> diffStr = getDiff();
@@ -93,11 +104,16 @@ public class SM_Controller_LCS {
 			
 		}
 		
-		//assert(diffStr.size() == jnx);
-		
 		return diffView;
 	}
 	
+	/*
+	 * Compare origin strArray and LCS strArray included Blank
+	 * 1 = Same Line , 0 = Different Line, 2 = Blank
+	 *
+	 * Blank is not included in LineNum
+	 * Blank used to match SameLine
+	 */
 	public ArrayList<ArrayList<Integer>> getDiffView_Blank() { //blank table
 		int[] L_str = getDiffView(LEFT);
 		int[] R_str = getDiffView(RIGHT);

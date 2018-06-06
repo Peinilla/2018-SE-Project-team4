@@ -34,6 +34,16 @@ public class SM_ModelTest {
 		model.setText(model.ListToString(R_testStr), RIGHT);
 	}
 
+	/*
+	 * create R_str and compare test_R.txt
+	 */
+	/////////////////////
+	/* test_R.txt
+		R-line1
+		R-line2
+		R-line3
+		R-line4
+	 */
 	@Test
 	public void testOpenText() {
 		List<String> R_str = new ArrayList<String>();
@@ -54,18 +64,24 @@ public class SM_ModelTest {
 		assertTrue(openModel.ListToString(R_str).equals(openModel.getAll(RIGHT)));
 	}
 
+	/*
+	 * Use saveModel.setText() to change saveModel.L_str to L_saveStr 
+	 * Use saveModel.saveText() save in L_str_new.txt
+	 * saveModel.openText() and change saveModel.L_str
+	 * Compare saveModel.L_str and L_saveStr
+	 */
 	@Test
 	public void testSaveText() {
-		List<String> L_str = new ArrayList<String>();
+		List<String> L_saveStr = new ArrayList<String>();
 		SM_Model saveModel = new SM_Model();
 	
-		L_str.add("L-line1");
-		L_str.add("L-line2");
-		L_str.add("L-line3");
-		L_str.add("L-line4");
+		L_saveStr.add("L-line1");
+		L_saveStr.add("L-line2");
+		L_saveStr.add("L-line3");
+		L_saveStr.add("L-line4");
 		
 		/** Start : L_str Save test */
-		saveModel.setText(saveModel.ListToString(L_str), true);
+		saveModel.setText(saveModel.ListToString(L_saveStr), true);
 		
 		try {
 			saveModel.saveText("./L_str_new.txt", true);
@@ -81,7 +97,7 @@ public class SM_ModelTest {
 			e.printStackTrace();
 		}
 		
-		assertTrue(saveModel.ListToString(L_str).equals(saveModel.getAll(LEFT)));
+		assertTrue(saveModel.ListToString(L_saveStr).equals(saveModel.getAll(LEFT)));
 		/** End : L_str Save test */
 		
 		File f = new File("./L_str_new.txt");
@@ -91,22 +107,18 @@ public class SM_ModelTest {
 		
 	}
 
+	/*
+	 * Compare model.R_str and L_testStr after model.setText().
+	 */
 	@Test
 	public void testSetText() {
 		model.setText(model.ListToString(L_testStr), RIGHT);
 		assertTrue(model.getAll(LEFT).equals(model.getAll(RIGHT)));
 	}
 
-	@Test
-	public void testGetAll() {
-		assertTrue(model.ListToString(L_testStr).equals(model.getAll(LEFT)));
-	}
-
-	@Test
-	public void testGetAllLineNum() {
-		assertTrue(model.ListToStringLineNum(L_testStr).equals(model.getAllLineNum(LEFT)));
-	}
-
+	/*
+	 * Compare model.ListToString() and strTest already created
+	 */
 	@Test
 	public void testListToString() {
 		String strTest = "line 1\nline 2";
@@ -115,6 +127,9 @@ public class SM_ModelTest {
 		assertTrue(strTest.equals(test));
 	}
 
+	/*
+	 * Compare model.ListToStringLineNum() and strTest already created
+	 */
 	@Test
 	public void testListToStringLineNum() {
 		String strTest = "1 : line 1\n2 : line 2";

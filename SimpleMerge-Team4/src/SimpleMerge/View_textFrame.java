@@ -77,6 +77,9 @@ public class View_textFrame extends JPanel {
 		return ta.getText();
 	}
 	
+	/*
+	 * Add SM_Controller as ActionListener to the Buttons
+	 */
 	public void addListnerController(SM_Controller ctrl) {
 		btn_save.addActionListener(ctrl);
 		btn_load.addActionListener(ctrl);
@@ -87,12 +90,20 @@ public class View_textFrame extends JPanel {
 		ta.setEditable(flag);
 	}
 	
+	/*
+	 * When 'ta' is editable,
+	 * btn_save & btn_load DisEnabled
+	 */
 	public void btn_if_Editing(boolean isEdit) {
-		
 		btn_save.setEnabled(isEdit);
 		btn_load.setEnabled(isEdit);
 	}
 	
+	/*
+	 * Use 'diffLine[]:int' ( 0 = Different line, 1 = Same line, 2 = Blank )
+	 * Blank is not included in LineNum
+	 * Blank used to match SameLine
+	 */
 	public void diffView(int[] diffLine) {
 		SimpleAttributeSet Attribute = new SimpleAttributeSet();
 

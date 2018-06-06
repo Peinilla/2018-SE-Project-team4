@@ -48,6 +48,10 @@ public class SM_Controller implements ActionListener {
 		return result;
 	}
 	
+	/*
+	 * Merge Different line in the selected direction
+	 * one line at a time
+	 */
 	private void merge(boolean toLeft){ 
 		ArrayList<String> origin_str;
 		ArrayList<String> target_str;
@@ -145,7 +149,6 @@ public class SM_Controller implements ActionListener {
 	}
 	
 	private void edit(boolean isLeft){
-		
 		//updateTextLineNum(); // set text normal	
 		if(view.isEditing(isLeft)) {
 			view.setEdit(isLeft);

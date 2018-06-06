@@ -11,8 +11,8 @@ public class SM_Model {
 	final static boolean LEFT = true;
 	final static boolean RIGHT = false;
 	
-	public List<String> L_str;
-	public List<String> R_str; 
+	List<String> L_str;
+	List<String> R_str; 
 	//FileReader 대신 한줄의 스트링 리스트를 저장
 	
 	SM_Controller_LCS _ctrl_dfiff;
@@ -58,6 +58,11 @@ public class SM_Model {
 		}
 	}
 	
+	/*
+	 * return String origin
+	 * ex) xxxx
+	 * 	   xxxxx
+	 */
 	public String getAll(boolean isLeft){
 		if(isLeft) {
 			return ListToString(L_str);
@@ -66,6 +71,11 @@ public class SM_Model {
 		}
 	}
 	
+	/*
+	 * return String include LineNum
+	 * ex) 1 : xxxx
+	 * 	   2 : xxxxx
+	 */
 	public String getAllLineNum(boolean isLeft){
 		if(isLeft) {
 			return ListToStringLineNum(L_str);
@@ -82,6 +92,7 @@ public class SM_Model {
 		}
 
 		result = result.replaceFirst("\n", "");
+		//remove first "\n"
 		
 		return result;
 	}
@@ -92,35 +103,26 @@ public class SM_Model {
 		
 		for(int inx = 0;inx < str.size(); inx++) {
 			buf.add((inx+1) + " : " + str.get(inx));
-		}
+		} //create String List include LineNum
 		
 		for(int inx = 0; inx < str.size(); inx++) {
 			result += "\n" + buf.get(inx);
 		}
 		
 		result = result.replaceFirst("\n", "");
-		
+		//remove first "\n"
+
 		return result;
 	}
 	
+	/*
+	 * Use String.split(), regex = "\n"
+	 * Store in buf
+	 */
 	public List<String> StringToList(String str){
 		List<String> buf = new ArrayList<String>();
 		buf = Arrays.asList(str.split("\n"));
 	
 		return buf;
-	}
-	
-	public String setLineNum(String str) {
-		int inx = 1;
-		
-		return 	str.replaceAll("\n", "\n" + inx++ + ":");
-	}
-	
-	public void delLineNum(String str) {
-		
-	}
-	
-	public void merge(boolean direct) {
-		
 	}
 }
