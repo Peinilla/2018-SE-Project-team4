@@ -46,15 +46,12 @@
   1. 소개(Introduction)
   
     1.1 목적(Purpose)
-    
     1.2 참조(Reference)
-    
     1.3 독자대상(Intend Audience)
   
   2. 전체 설명(Overall Description)
     
     2.1 제품기능(Product Feature)
-    
     2.2 운영환경(Operation Environment)
 
   3. 유스케이스(Usecase)
@@ -66,7 +63,6 @@
   5. 외부 인터페이스 요구사항(External Interface Requirement)
   
     5.1 사용자 인터페이스(User Interface)
-    
     5.2 소프트웨어 인터페이스(Software Interface)
   
   6. 기능 이외의 다른 요구사항(Other Nonfuctional Requirement)
