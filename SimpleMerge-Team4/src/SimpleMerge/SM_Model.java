@@ -11,8 +11,8 @@ public class SM_Model {
 	final static boolean LEFT = true;
 	final static boolean RIGHT = false;
 	
-	List<String> L_str;
-	List<String> R_str; 
+	public List<String> L_str;
+	public List<String> R_str; 
 	//FileReader 대신 한줄의 스트링 리스트를 저장
 	
 	SM_Controller_LCS _ctrl_dfiff;

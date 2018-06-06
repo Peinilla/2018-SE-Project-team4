@@ -1,172 +1,135 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
-import java.util.List;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.List;
+import java.util.ArrayList;
+import org.junit.Test;
 
 import SimpleMerge.SM_Model;
 
-class SM_ModelTest {
+public class SM_ModelTest {
+
+	final static boolean LEFT = true;
+	final static boolean RIGHT = false;
 	
+	List<String> L_testStr = new ArrayList<String>(); 
+	List<String> R_testStr = new ArrayList<String>(); 
+	SM_Model model;
 	
-	/**
-	@Test
-	final void testSM_Model() {
-	
+	public SM_ModelTest(){
+		L_testStr.add("line 1"); 
+		L_testStr.add("line 2"); 
+
+		R_testStr.add("line 1"); 
+		R_testStr.add("line 2xxx"); 
+		R_testStr.add("line 3xx"); 
+		R_testStr.add("line 4");
+		
+		model = new SM_Model();
+		
+		model.setText(model.ListToString(L_testStr), LEFT);
+		model.setText(model.ListToString(R_testStr), RIGHT);
 	}
-	*/
-	
-	
+
 	@Test
-	void testOpenText() {
-		List<String> L_str = new ArrayList<String>();
+	public void testOpenText() {
 		List<String> R_str = new ArrayList<String>();
 		
-		SM_Model model = new SM_Model();
+		SM_Model openModel = new SM_Model();
 		
 		try {
-			model.openText("./L_str.txt", true); 
+			openModel.openText("./test_R.txt", false);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		try {
-			model.openText("./R_str.txt", false);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		L_str.add("L-line1");R_str.add("R-line1");
-		L_str.add("L-line2");R_str.add("R-line2");
-		L_str.add("L-line3");R_str.add("R-line3");
-		
-		assertEquals(L_str.get(0), model.L_str.get(0));
-		assertEquals(L_str.get(1), model.L_str.get(1));
-		assertEquals(L_str.get(2), model.L_str.get(2));
-		
-		assertEquals(R_str.get(0), model.R_str.get(0));
-		assertEquals(R_str.get(1), model.R_str.get(1));
-		assertEquals(R_str.get(2), model.R_str.get(2));
-		
-	
+		R_str.add("R-line1");
+		R_str.add("R-line2");
+		R_str.add("R-line3");
+		R_str.add("R-line4");
+
+		assertTrue(openModel.ListToString(R_str).equals(openModel.getAll(RIGHT)));
 	}
-	
-	
-	
+
 	@Test
-	void testSaveText() {
-		
+	public void testSaveText() {
 		List<String> L_str = new ArrayList<String>();
-		List<String> R_str = new ArrayList<String>();
-		code.SM_Model model = new code.SM_Model();
+		SM_Model saveModel = new SM_Model();
 	
-		L_str.add("L-line1");R_str.add("R-line1");
-		L_str.add("L-line2");R_str.add("R-line2");
-		L_str.add("L-line3");R_str.add("R-line3");
-		L_str.add("L-line4");R_str.add("R-line4");
+		L_str.add("L-line1");
+		L_str.add("L-line2");
+		L_str.add("L-line3");
+		L_str.add("L-line4");
 		
 		/** Start : L_str Save test */
-		model.setText(model.ListToString(L_str), true);
+		saveModel.setText(saveModel.ListToString(L_str), true);
 		
 		try {
-			model.saveText("./L_str_new.txt", true);
+			saveModel.saveText("./L_str_new.txt", true);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		try {
-			model.openText("./L_str_new.txt", true);
+			saveModel.openText("./L_str_new.txt", true);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		assertEquals(L_str.get(0), model.L_str.get(0));
-		assertEquals(L_str.get(1), model.L_str.get(1));
-		assertEquals(L_str.get(2), model.L_str.get(2));
+		assertTrue(saveModel.ListToString(L_str).equals(saveModel.getAll(LEFT)));
 		/** End : L_str Save test */
 		
-		
-		/** Start : R_str Save test */
-		model.setText(model.ListToString(R_str), false);
-
-		try {
-			model.saveText("./R_str_new.txt", false);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		File f = new File("./L_str_new.txt");
+		if(f.exists()) {
+			f.delete();
 		}
 		
-		try {
-			model.openText("./R_str_new.txt", false);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	}
+
+	@Test
+	public void testSetText() {
+		model.setText(model.ListToString(L_testStr), RIGHT);
+		assertTrue(model.getAll(LEFT).equals(model.getAll(RIGHT)));
+	}
+
+	@Test
+	public void testGetAll() {
+		assertTrue(model.ListToString(L_testStr).equals(model.getAll(LEFT)));
+	}
+
+	@Test
+	public void testGetAllLineNum() {
+		assertTrue(model.ListToStringLineNum(L_testStr).equals(model.getAllLineNum(LEFT)));
+	}
+
+	@Test
+	public void testListToString() {
+		String strTest = "line 1\nline 2";
+		String test = model.ListToString(L_testStr);
 		
-		assertEquals(R_str.get(0), model.R_str.get(0));
-		assertEquals(R_str.get(1), model.R_str.get(1));
-		assertEquals(R_str.get(2), model.R_str.get(2));
-		/** End : R_str Save test */
+		assertTrue(strTest.equals(test));
+	}
+
+	@Test
+	public void testListToStringLineNum() {
+		String strTest = "1 : line 1\n2 : line 2";
+		String test = model.ListToStringLineNum(L_testStr);
 		
+		assertTrue(strTest.equals(test));
+	}
+
+	@Test
+	public void testStringToList() {
+		String strTest = model.ListToString(L_testStr);
 		
+		List<String> test = new ArrayList<String>();
+		test = model.StringToList(strTest);
 		
+		assertTrue(test.equals(L_testStr));
 	}
-	
-	
-	/**
-	@Test
-	void testSetText() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetAll() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetAllLineNum() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testListToString() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testListToStringLineNum() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testStringToList() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetDiffView_Blank() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSetLineNum() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testDelLineNum() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testMerge() {
-		fail("Not yet implemented");
-	}
-	*/
 }
