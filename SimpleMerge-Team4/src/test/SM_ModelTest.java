@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+import SimpleMerge.SM_Model;
+
 class SM_ModelTest {
 	
 	
@@ -23,7 +25,7 @@ class SM_ModelTest {
 		List<String> L_str = new ArrayList<String>();
 		List<String> R_str = new ArrayList<String>();
 		
-		code.SM_Model model = new code.SM_Model();
+		SM_Model model = new SM_Model();
 		
 		try {
 			model.openText("./L_str.txt", true); 
