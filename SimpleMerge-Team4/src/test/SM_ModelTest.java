@@ -46,14 +46,7 @@ public class SM_ModelTest {
 	}
 
 	/*
-	 * create R_str and compare test_R.txt
-	 */
-	/////////////////////
-	/* test_R.txt
-		R-line1
-		R-line2
-		R-line3
-		R-line4
+	 * create R_str and compare test_R.txt created by constructor
 	 */
 	@Test
 	public void testOpenText() {
