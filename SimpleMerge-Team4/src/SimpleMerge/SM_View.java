@@ -143,16 +143,16 @@ public class SM_View extends JFrame{
 		// when editing, Merge Disable
 		
 		if(isLeft) {
-			boolean flag = text1.ta.isEditable();
+			boolean flag = text1.textPane.isEditable();
 			text1.setEdit(!flag);
 			text1.btn_if_Editing(flag);
 		}else {
-			boolean flag = text2.ta.isEditable();
+			boolean flag = text2.textPane.isEditable();
 			text2.setEdit(!flag);
 			text2.btn_if_Editing(flag);
 		}
 		
-		if(text1.ta.isEditable() || text2.ta.isEditable()) {
+		if(text1.textPane.isEditable() || text2.textPane.isEditable()) {
 			btn_diff.setEnabled(false);
 		}else {
 			btn_diff.setEnabled(true);
@@ -163,9 +163,9 @@ public class SM_View extends JFrame{
 		boolean bool;
 		
 		if(isLeft) {
-			bool = text1.ta.isEditable();
+			bool = text1.textPane.isEditable();
 		}else {
-			bool = text2.ta.isEditable();
+			bool = text2.textPane.isEditable();
 		}
 		return bool;
 	}

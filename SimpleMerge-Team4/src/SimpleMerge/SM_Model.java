@@ -15,8 +15,6 @@ public class SM_Model {
 	List<String> R_str; 
 	//FileReader 대신 한줄의 스트링 리스트를 저장
 	
-	SM_Controller_LCS _ctrl_dfiff;
-	
 	public SM_Model(){
 		L_str = new ArrayList<String>();
 		R_str = new ArrayList<String>();
@@ -27,9 +25,9 @@ public class SM_Model {
 	public void openText(String path, boolean isLeft) throws FileNotFoundException{
 		try {
 			if(isLeft) {
-				L_str = Files.readAllLines(Paths.get(path));
+				L_str = Files.readAllLines(Paths.get(path), Charset.defaultCharset());
 			}else {
-				R_str = Files.readAllLines(Paths.get(path));
+				R_str = Files.readAllLines(Paths.get(path), Charset.defaultCharset());
 			}
 		}catch(IOException e){
 			e.printStackTrace();

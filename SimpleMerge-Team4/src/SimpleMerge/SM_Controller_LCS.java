@@ -24,7 +24,7 @@ public class SM_Controller_LCS {
 		setLCS();
 	}
 
-	/*
+	/* 
 	 * Use L_str & R_str to Create LCS table
 	 * LCS table is int Array L_str.size() + 1 * R_str.size()
 	 */

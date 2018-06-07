@@ -4,6 +4,10 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.ArrayList;
 import org.junit.Test;
@@ -23,15 +27,22 @@ public class SM_ModelTest {
 		L_testStr.add("line 1"); 
 		L_testStr.add("line 2"); 
 
-		R_testStr.add("line 1"); 
-		R_testStr.add("line 2xxx"); 
-		R_testStr.add("line 3xx"); 
-		R_testStr.add("line 4");
+		R_testStr.add("R-line1"); 
+		R_testStr.add("R-line2"); 
+		R_testStr.add("R-line3"); 
+		R_testStr.add("R-line4");
 		
 		model = new SM_Model();
 		
 		model.setText(model.ListToString(L_testStr), LEFT);
 		model.setText(model.ListToString(R_testStr), RIGHT);
+		
+		try {
+			Files.write(Paths.get("./test_R.txt"), R_testStr, Charset.defaultCharset());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/*
@@ -62,6 +73,11 @@ public class SM_ModelTest {
 		R_str.add("R-line4");
 
 		assertTrue(openModel.ListToString(R_str).equals(openModel.getAll(RIGHT)));
+
+		File f = new File("./test_R.txt");
+		if(f.exists()) {
+			f.delete();
+		}
 	}
 
 	/*

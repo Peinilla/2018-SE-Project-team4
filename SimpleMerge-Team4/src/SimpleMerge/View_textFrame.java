@@ -19,7 +19,7 @@ import javax.swing.text.StyledDocument;
 
 public class View_textFrame extends JPanel {
 	
-	JTextPane ta = new JTextPane();
+	JTextPane textPane = new JTextPane();
 	JScrollPane jsp;
 	StyledDocument styleDoc;
 	
@@ -36,16 +36,16 @@ public class View_textFrame extends JPanel {
 	}
 	
 	public void init() {
-		ta.setBackground(Color.WHITE);
-		ta.setEditable(false);
-		jsp = new JScrollPane(ta) {
+		textPane.setBackground(Color.WHITE);
+		textPane.setEditable(false);
+		jsp = new JScrollPane(textPane) {
 			 @Override
 	            public Dimension getPreferredSize() {
 	                return new Dimension(550,650);
 	            }
 		};
-        jsp.setViewportView(ta);
-        styleDoc = ta.getStyledDocument();
+        jsp.setViewportView(textPane);
+        styleDoc = textPane.getStyledDocument();
 
 		if(isLeft) {
 			btn_save = new JButton("Left_Save");		
@@ -70,11 +70,11 @@ public class View_textFrame extends JPanel {
 	public void setUIText(String str) {
 		textClear();
 		
-		ta.setText(str);
+		textPane.setText(str);
 	}
 	
 	public String getUIText() {
-		return ta.getText();
+		return textPane.getText();
 	}
 	
 	/*
@@ -87,7 +87,7 @@ public class View_textFrame extends JPanel {
 	}
 	
 	public void setEdit(boolean flag) {
-		ta.setEditable(flag);
+		textPane.setEditable(flag);
 	}
 	
 	/*
@@ -151,7 +151,7 @@ public class View_textFrame extends JPanel {
 	}
 	
 	public void textClear() {
-		ta.setText(null);
+		textPane.setText(null);
 	}
 }
 
