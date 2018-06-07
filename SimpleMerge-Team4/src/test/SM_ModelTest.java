@@ -69,7 +69,7 @@ public class SM_ModelTest {
 
 		File f = new File("./test_R.txt");
 		if(f.exists()) {
-			f.delete();
+			f.deleteOnExit();
 		}
 	}
 
@@ -111,7 +111,7 @@ public class SM_ModelTest {
 		
 		File f = new File("./L_str_new.txt");
 		if(f.exists()) {
-			f.delete();
+			f.deleteOnExit();
 		}
 		
 	}
