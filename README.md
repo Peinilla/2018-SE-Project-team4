@@ -1,24 +1,3 @@
-다이어그램들은 깃헙에 올린 Diagrams.mdj을 starUML 프로그램으로 추가하면서 만들기
-
-생각해보니 JUnit으로 테스트 가능하도록 JUnit 담당이 필요함. '플밍 한명=JUnit 만들고 테스트가능하게 다른 코드도 수정' 하면 될듯?
-
-
-
-# 해야 할 것 : 컴파일러 과제끝날때까지 쉬기
-## 그래도 하고싶으면
-### 1) mvc 만들기 -> (김성연)
-### 2) diff 알고리즘 / 소스코드 구해오기
-### 3) SRS 수정하기
-SRS 수정은 사소한거라도 ex)문법 맞추기 라도 해서 커밋횟수를 늘리도록하자
-### 4) 보고서 작성에 넣을 내용들 정하기
- 도메인 모델, 클래스 다이어그램, 유스케이스, FURPS+(SRS) 제대로 정리 (필수)
- +스테이트, 시퀀스, 액티비티 다이어그램 등등?
-
-
-# 이클립스에서 프로젝트 가져오는 방법
-## 1. File -> Import -> General)Projects from Flolder -> Directory) (clone 한 폴더에서 2018-SE-Project-team4 선택
-## 2. Profit!
-
 # 2018-SE-Project-team4
 cau 2018-SE-Project-team4
 
