@@ -134,8 +134,8 @@ Java Window form을 이용한 개발
 ##### UC1 Load
 ##### UC2 Edit
 ##### UC3 Save
-##### UC4 Merge
-##### UC5 Diff
+##### UC4 Diff
+##### UC5 Merge
 ##### UC6 CopytoRight
 ##### UC7 CopytoLeft
 
